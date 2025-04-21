@@ -1,0 +1,51 @@
+<template>
+		<lightning-card title="Weather Information Center" variant="narrow" icon-name="utility:world">
+				<div class="slds-p-around_medium">
+            <lightning-input type="text" label="Enter City Name"  placeholder="e.g Noida, Hyderabad, Bangalore, Pune, Mumbai......" onchange={handleInputChange} value={inputCityName}></lightning-input>
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-button label="Get Weather Details" variant="Brand" onclick={handleWeatherDetails} class="slds-align_absolute-center"></lightning-button>
+        </div>
+        <div class="slds-p-around_medium" lwc:if={showResetbtn}>
+            <p class="slds-text-align_center" style="color:red">"Unable to fetching data....."</p>
+            <br/>
+            <lightning-button label="Reset" variant="neutral" onclick={handleReset} class="slds-align_absolute-center"></lightning-button>
+        </div>	
+        <template lwc:if={showspinner}>
+            <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+    </template>	
+<!-- Display Weather Details -->			
+<template lwc:if={showWeatherDetails}>
+<div class="c-container">
+    <lightning-layout horizontal-align="spread" multiple-rows>
+        <lightning-layout-item padding="around-small" size="12">
+           <span class="slds-text-title_bold"> City : {city} </span>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="6">
+						<span class="slds-text-title_bold"> Temperature : {Tempareture} (degress celcuis)</span>
+        </lightning-layout-item>
+				<lightning-layout-item padding="around-small" size="6">
+           <span class="slds-text-title_bold"> Humidity : {Humidity} % </span>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="6">
+           <span class="slds-text-title_bold"> Windspeed : {windspeed} kmph </span>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="6">
+						<span class="slds-text-title_bold"> LastObservationOn : {LastObservationOn} </span>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="6">
+						<span class="slds-text-title_bold"> Latitude : {latitude} </span>
+        </lightning-layout-item>
+				<lightning-layout-item padding="around-small" size="6">
+						<span class="slds-text-title_bold"> Longitude : {longitude} </span>
+        </lightning-layout-item>
+			</lightning-layout>
+            <div class="bottom-right" lwc:if={showCancelbtn}>
+                <lightning-button label="Cancel" variant="neutral" onclick={handleCancel}></lightning-button>
+            </div>
+  
+</div>
+</template>
+    </lightning-card>
+		
+</template>
